@@ -10,38 +10,50 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+//#include "libft.h"
 #include <stdarg.h>
 #include <stdio.h>
+#include <unistd.h>
 
-static int	ft_conversions(int c)
+static int	ft_conversions(va_list args, int type)
 {
-	int	i;
+	int	count;
 
-	i = 0;
-	if ()
+	count = 0;
+	if (type == 'c')
+		count += ft_putchar(va_arg(args, int));
+	else if (type == 'd')
+		count += ft_putnbr(va_arg(args, int));
+	return (count);
 }
 
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
+	int	count;
 	size_t	i;
 
+
 	i = 0;
+	count = 0;
 	va_start(args, format);
 	while (format[i])
 	{
-		if (fromat[i] == '%' && format[i + 1] == '%')
-			ft_putchar('%'), i++;
-		if (format[i] == '%' && format[i + 1] == 'c')
-			ft_putchar(format[i + 2]), i + 2;
-		if (format[i] == '%' && format[i + 1] == 's')
-			ft_putstr(format[i]), i++;
-		if (format[i] == '%' && format[i + 1] == 'd')
-			ft_putnbr(format[i]);
-		i++ write(1, &format[i], 1);
+		if (format[i] == '%' && format[i + 1] == '%')
+		{
+			count += ft_putchar('%');
+			i++;
+		}
+		else if (format[i] == '%')
+		{
+			count += ft_conversions(&args, format[i + 1]);
+			i++;
+		}
+		else
+			write(1, &format[i], 1);
 		i++;
 	}
+
 	va_end(args);
-	return ;
+	return (i);
 }

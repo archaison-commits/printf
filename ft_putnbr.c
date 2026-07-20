@@ -13,11 +13,28 @@
 #include "libftprintf.h"
 #include <unistd.h>
 
-void	ft_putnbr(int nb)
+int	len_ft(long num)
 {
-	long	n;
+	size_t	len;
 
-	n = nb;
+	len = 0;
+	if (num == 0)
+		len++;
+	if (num < 0)
+		len++;
+	while (num != 0)
+	{
+		len++;
+		num /= 10;
+	}
+	return (len);
+}
+
+int	ft_putnbr(long n)
+{
+	int	len;
+
+	len = len_ft(n);
 	if (n < 0)
 	{
 		write(1, "-", 1);
@@ -25,7 +42,9 @@ void	ft_putnbr(int nb)
 	}
 	if (n > 9)
 	{
-		ft_putnbr((int)(n / 10));
+		ft_putnbr(n / 10);
 	}
 	write(1, &(char){n % 10 + '0'}, 1);
+
+	return (len);
 }
