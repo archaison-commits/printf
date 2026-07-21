@@ -22,17 +22,26 @@ static int	ft_conversions(va_list args, int type)
 	count = 0;
 	if (type == 'c')
 		count += ft_putchar(va_arg(args, int));
-	else if (type == 'd')
+	else if (type == 's')
+		count += ft_putstr(va_arg(args, int));
+	else if (type == 'd' || type == 'i')
 		count += ft_putnbr(va_arg(args, int));
+	else if (type == 'u')
+		count += ft_putnbr_un(va_arg(args, int));
+	else if (type == 'x')
+		count += ft_puthex_lo(va_arg(args, int));
+	else if (type == 'X')
+		count += ft_puthex_up(va_arg(args, int));
+	else if (type == 'p')
+		count += ft_putnbr_un(va_arg(args, int));
 	return (count);
 }
 
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
-	int	count;
+	int		count;
 	size_t	i;
-
 
 	i = 0;
 	count = 0;
@@ -53,7 +62,6 @@ int	ft_printf(const char *format, ...)
 			write(1, &format[i], 1);
 		i++;
 	}
-
 	va_end(args);
 	return (i);
 }
