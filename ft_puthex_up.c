@@ -13,7 +13,7 @@
 //#include "printflibft.h"
 #include <unistd.h>
 
-static int	len_ft(unsigned int num)
+static int	len_ft(unsigned long num)
 {
 	int	len;
 
@@ -28,7 +28,7 @@ static int	len_ft(unsigned int num)
 	return (len);
 }
 
-int	ft_puthex_up(unsigned int n)
+int	ft_puthex_up(unsigned long n)
 {
 	char	*base;
 	int		len;

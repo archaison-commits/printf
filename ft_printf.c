@@ -23,17 +23,17 @@ static int	ft_conversions(va_list args, int type)
 	if (type == 'c')
 		count += ft_putchar(va_arg(args, int));
 	else if (type == 's')
-		count += ft_putstr(va_arg(args, int));
+		count += ft_putstr(va_arg(args, char *));
 	else if (type == 'd' || type == 'i')
 		count += ft_putnbr(va_arg(args, int));
 	else if (type == 'u')
-		count += ft_putnbr_un(va_arg(args, int));
+		count += ft_putnbr_un(va_arg(args, unsigned int));
 	else if (type == 'x')
-		count += ft_puthex_lo(va_arg(args, int));
+		count += ft_puthex_lo(va_arg(args, unsigned int));
 	else if (type == 'X')
-		count += ft_puthex_up(va_arg(args, int));
+		count += ft_puthex_up(va_arg(args, unsigned int));
 	else if (type == 'p')
-		count += ft_putnbr_un(va_arg(args, int));
+		count += ft_putpointer(va_arg(args, void *));
 	return (count);
 }
 
@@ -48,20 +48,21 @@ int	ft_printf(const char *format, ...)
 	va_start(args, format);
 	while (format[i])
 	{
-		if (format[i] == '%' && format[i + 1] == '%')
+		if (format[i] == '%' && format[i + 1] != '\0')
 		{
-			count += ft_putchar('%');
+			if (format[i + 1] == '%')
+			{
+				count += ft_putchar('%');
+				i++;
+			}
+			else
+				count += ft_conversions(&args, format[i + 1]);
 			i++;
 		}
-		else if (format[i] == '%')
-		{
-			count += ft_conversions(&args, format[i + 1]);
-			i++;
-		}
-		else
-			write(1, &format[i], 1);
+		else if
+			count += ft_putchar(format[i]);
 		i++;
 	}
 	va_end(args);
-	return (i);
+	return (count);
 }

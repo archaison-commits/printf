@@ -29,14 +29,14 @@ static int	len_ft(long num)
 	return (len);
 }
 
-int	ft_putnbr(unsigned int n)
+int	ft_putnbr_un(unsigned int n)
 {
 	int	len;
 
 	len = len_ft(n);
 	if (n > 9)
 	{
-		ft_putnbr(n / 10);
+		ft_putnbr_un(n / 10);
 	}
 	write(1, &(char){n % 10 + '0'}, 1);
 

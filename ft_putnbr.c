@@ -15,7 +15,7 @@
 
 int	len_ft(long num)
 {
-	size_t	len;
+	int	len;
 
 	len = 0;
 	if (num == 0)

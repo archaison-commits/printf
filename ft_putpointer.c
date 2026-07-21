@@ -10,18 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "printflbft.h"
+#include <unistd.h>
 
-void	*ft_puthex_lo(unsigned int n)
+int	ft_putpointer(void *ptr)
 {
-	char	*prefix;
-	char	*address;
-	int		len;
+	int					len;
+	unsigned long		address;
 
-	prefix = "0x";
-	address = "0123456789abcdef";
-	if (n > 15)
-		ft_puthex_lo(n / 16);
-	len = len_ft(n);
-	ft_putchar(base[n % 16]);
-	return ;
+	len = 0;
+	if (!ptr)
+		return (ft_putstr("(nil)"));
+	address = (unsigned long)ptr;
+	len += ft_putstr("0x");
+	len += ft_puthex_lo(address);
+	return (len);
 }
