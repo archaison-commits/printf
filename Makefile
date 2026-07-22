@@ -13,7 +13,9 @@
 NAME = libftprintf.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-SRC = 
+SRC = \
+	ft_printf.c ft_putchar.c ft_puthex_lo.c ft_puthex_up.c \
+	ft_putnbr_un.c ft_putnbr.c ft_putpointer.c ft_putstr.c
 
 OBJS = $(SRC:.c=.o)
 
@@ -22,7 +24,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
-%.o: %.c libftprintf.h
+%.o: %.c ft_printf.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

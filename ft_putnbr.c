@@ -10,10 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
-#include <unistd.h>
+#include "ft_printf.h"
 
-int	len_ft(long num)
+static int	len_ft(long num)
 {
 	int	len;
 
@@ -41,10 +40,7 @@ int	ft_putnbr(long n)
 		n = -n;
 	}
 	if (n > 9)
-	{
 		ft_putnbr(n / 10);
-	}
 	write(1, &(char){n % 10 + '0'}, 1);
-
 	return (len);
 }

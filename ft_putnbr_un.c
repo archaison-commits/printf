@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "ft_printf.h"
 
 static int	len_ft(long num)
 {
@@ -18,8 +18,6 @@ static int	len_ft(long num)
 
 	len = 0;
 	if (num == 0)
-		len++;
-	if (num < 0)
 		len++;
 	while (num != 0)
 	{
@@ -35,11 +33,7 @@ int	ft_putnbr_un(unsigned int n)
 
 	len = len_ft(n);
 	if (n > 9)
-	{
 		ft_putnbr_un(n / 10);
-	}
 	write(1, &(char){n % 10 + '0'}, 1);
-
 	return (len);
 }
-

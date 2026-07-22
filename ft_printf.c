@@ -10,17 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "libft.h"
-#include <stdarg.h>
-#include <stdio.h>
-#include <unistd.h>
+#include "ft_printf.h"
 
 static int	ft_conversions(va_list args, int type)
 {
 	int	count;
 
 	count = 0;
-	if (type == 'c')
+	if (type == '%')
+		count += ft_putchar('%');
+	else if (type == 'c')
 		count += ft_putchar(va_arg(args, int));
 	else if (type == 's')
 		count += ft_putstr(va_arg(args, char *));
@@ -50,19 +49,19 @@ int	ft_printf(const char *format, ...)
 	{
 		if (format[i] == '%' && format[i + 1] != '\0')
 		{
-			if (format[i + 1] == '%')
-			{
-				count += ft_putchar('%');
-				i++;
-			}
-			else
-				count += ft_conversions(&args, format[i + 1]);
+			count += ft_conversions(args, format[i + 1]);
 			i++;
 		}
-		else if
+		else
 			count += ft_putchar(format[i]);
 		i++;
 	}
 	va_end(args);
 	return (count);
 }
+/*
+int	main(void)
+{
+	ft_printf(" NULL %s NULL ", NULL);
+}
+*/

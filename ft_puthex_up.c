@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "printflibft.h"
-#include <unistd.h>
+#include "ft_printf.h"
 
 static int	len_ft(unsigned long num)
 {
@@ -35,7 +34,7 @@ int	ft_puthex_up(unsigned long n)
 
 	base = "0123456789ABCDEF";
 	if (n > 15)
-		ft_puthex_lo(n / 16);
+		ft_puthex_up(n / 16);
 	len = len_ft(n);
 	ft_putchar(base[n % 16]);
 	return (len);

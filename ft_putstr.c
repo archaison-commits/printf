@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unsitd.h>
-#include <libftprintf.h>
+#include "ft_printf.h"
 
 int	ft_putstr(char *s)
 {
@@ -19,7 +18,7 @@ int	ft_putstr(char *s)
 
 	len = 0;
 	if (!s)
-		return (0);
+		s = "(null)";
 	while (s[len] != '\0')
 	{
 		ft_putchar(s[len]);

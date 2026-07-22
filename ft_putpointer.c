@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printflbft.h"
-#include <unistd.h>
+#include "ft_printf.h"
 
 int	ft_putpointer(void *ptr)
 {
