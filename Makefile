@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = libftprintf.a
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 SRC = \
 	ft_printf.c ft_putchar.c ft_puthex_lo.c ft_puthex_up.c \
